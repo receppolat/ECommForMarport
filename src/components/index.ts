@@ -1,6 +1,7 @@
 import Button from './Button';
+import Slider from './Slider';
 import TextInput from './TextInput';
 
-export {Button, TextInput};
+export {Button, Slider, TextInput};
 
-export {CategoryCard} from './Cards';
+export {CategoryCard, ProductCard} from './Cards';

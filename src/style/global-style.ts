@@ -8,6 +8,15 @@ const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+  cardContainer: {
+    backgroundColor: colors.background.secondary,
+    borderWidth: 1,
+    borderColor: colors.border.primary,
+    marginBottom: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 16,
+    borderRadius: 8,
+  },
 });
 
 export default globalStyles;

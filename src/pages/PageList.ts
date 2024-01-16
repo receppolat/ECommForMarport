@@ -1,5 +1,4 @@
-import {Login, Register} from './Auth';
-import Home from './Home';
+import {CategoryDetail, Home, Login, ProductDetail, Register} from './';
 
 const PAGE_LIST = [
   {
@@ -15,6 +14,16 @@ const PAGE_LIST = [
   {
     name: 'Home',
     component: Home,
+    options: {},
+  },
+  {
+    name: 'CategoryDetail',
+    component: CategoryDetail,
+    options: {},
+  },
+  {
+    name: 'ProductDetail',
+    component: ProductDetail,
     options: {},
   },
 ];

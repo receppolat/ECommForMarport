@@ -3,12 +3,6 @@ import {colors} from '../../../style/colors';
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: colors.border.primary,
-    borderRadius: 8,
-    marginBottom: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },

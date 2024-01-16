@@ -25,7 +25,7 @@ const Home = () => {
     setLoading(true);
     productService
       .getCategories()
-      .then(res => setData(res.data))
+      .then(res => setData(res.data ?? []))
       .catch(console.log)
       .finally(() => {
         setLoading(false);
