@@ -19,6 +19,9 @@ const colors = {
   border: {
     primary: '#999999',
   },
+  foreground: {
+    tertiarry: '#aaa',
+  },
 };
 
 export {colors};
