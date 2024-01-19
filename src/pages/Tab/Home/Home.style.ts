@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../style/colors';
+import {colors} from '../../../style/colors';
 
 const styles = StyleSheet.create({
   title: {

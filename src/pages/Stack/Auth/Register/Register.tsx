@@ -3,13 +3,13 @@ import {Alert, Text, View} from 'react-native';
 import React from 'react';
 
 // Components
-import {Button, TextInput} from '../../../components';
+import {Button, TextInput} from '../../../../components';
 
 // Styles
-import {globalStyles} from '../../../style';
+import {globalStyles} from '../../../../style';
 import styles from './Register.style';
 import {useNavigation} from '@react-navigation/native';
-import {setObjectToLocal, USER_STORAGE} from '../../../storage';
+import {setObjectToLocal, USER_STORAGE} from '../../../../storage';
 
 const Register = () => {
   const navigation = useNavigation();

@@ -6,26 +6,27 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 // Components
-import {Button, TextInput} from '../../../components';
+import {Button, TextInput} from '../../../../components';
 
 // Styles
-import {globalStyles} from '../../../style';
+import {globalStyles} from '../../../../style';
 import styles from './Login.style';
-import {getObjectFromLocal, USER_STORAGE} from '../../../storage';
-import {navigateTo} from '../../../routes/helper';
+import {getObjectFromLocal, USER_STORAGE} from '../../../../storage';
+import {navigateTo} from '../../../../routes/helper';
+import {PAGE_LIST} from '../../../PageList';
 
 const Login = () => {
   const navigation = useNavigation<any>();
   const [username, setUsername] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
 
-  const navigateToRegister = () => navigateTo('Register');
+  const navigateToRegister = () => navigateTo(PAGE_LIST.Register.name);
 
   const navigateToHome = () => {
     const user: any = getObjectFromLocal(USER_STORAGE);
     if (user?.username && user?.password) {
       if (username === user?.username && user?.password === password) {
-        navigation.replace('Home');
+        navigation.replace(PAGE_LIST.ECommTab.name);
       } else Alert.alert('Hata', 'Kullanıcı adı veya parola yanlış');
     }
   };

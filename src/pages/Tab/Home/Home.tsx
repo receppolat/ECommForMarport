@@ -7,11 +7,11 @@ import {
 } from 'react-native';
 import React from 'react';
 
-import {CategoryCard} from '../../components';
-import {globalStyles} from '../../style';
+import {CategoryCard} from '../../../components';
+import {globalStyles} from '../../../style';
 
 import styles from './Home.style';
-import {productService} from '../../services';
+import {productService} from '../../../services';
 
 const Home = () => {
   const [data, setData] = React.useState<string[]>([]);

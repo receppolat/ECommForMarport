@@ -4,15 +4,15 @@ import type {ListRenderItem} from 'react-native';
 import React from 'react';
 
 // Components
-import {ProductCard} from '../../components';
+import {ProductCard} from '../../../components';
 
 // Services
-import {productService} from '../../services';
+import {productService} from '../../../services';
 
 // Styles and Types
-import {globalStyles} from '../../style';
+import {globalStyles} from '../../../style';
 import styles from './CategoryDetail.style';
-import type {IProduct} from '../../types';
+import type {IProduct} from '../../../types';
 
 const CategoryDetail = props => {
   const {category} = props.route?.params ?? {};

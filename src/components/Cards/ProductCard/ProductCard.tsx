@@ -9,11 +9,13 @@ import {navigateTo} from '../../../routes/helper';
 import styles from './ProductCard.style';
 import {globalStyles} from '../../../style';
 import type {IProductCardProps} from './ProductCard.type';
+import {PAGE_LIST} from '../../../pages/PageList';
 
 const ProductCard = (props: IProductCardProps) => {
   const {product, horizontal = false} = props;
 
-  const navigateToDetail = () => navigateTo('ProductDetail', {id: product.id});
+  const navigateToDetail = () =>
+    navigateTo(PAGE_LIST.ProductDetail.name, {id: product.id});
 
   return (
     <TouchableOpacity

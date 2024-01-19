@@ -7,11 +7,11 @@ import {
   ListRenderItem,
 } from 'react-native';
 import React from 'react';
-import {productService} from '../../services';
-import type {IProduct} from '../../types';
-import {globalStyles} from '../../style';
+import {productService} from '../../../services';
+import type {IProduct} from '../../../types';
+import {globalStyles} from '../../../style';
 import styles from './ProductDetail.style';
-import {Button, ProductCard, Slider} from '../../components';
+import {Button, ProductCard, Slider} from '../../../components';
 
 const ProductDetail = props => {
   const {id} = props.route?.params ?? {};

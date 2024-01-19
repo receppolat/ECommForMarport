@@ -5,11 +5,13 @@ import styles from './CategoryCard.style';
 import type {ICategoryCardProps} from './CategoryCard.type';
 import {navigateTo} from '../../../routes/helper';
 import {globalStyles} from '../../../style';
+import {PAGE_LIST} from '../../../pages/PageList';
 
 const CategoryCard = (props: ICategoryCardProps) => {
   const {category, index} = props;
 
-  const navigateToDetail = () => navigateTo('CategoryDetail', {category});
+  const navigateToDetail = () =>
+    navigateTo(PAGE_LIST.CategoryDetail.name, {category});
 
   return (
     <TouchableOpacity

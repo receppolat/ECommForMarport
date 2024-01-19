@@ -1,10 +1,10 @@
-type Icon = 'ant' | 'entypo' | 'evil' | 'feather' | 'ion' | 'matcomm';
+type IIcon = 'ant' | 'entypo' | 'evil' | 'feather' | 'ion' | 'matcomm';
 
 interface IIconProps {
-  type: Icon;
+  type: IIcon;
   name: string;
   size?: number;
   color?: string;
 }
 
-export type {IIconProps};
+export type {IIconProps, IIcon};

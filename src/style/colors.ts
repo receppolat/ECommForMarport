@@ -18,9 +18,11 @@ const colors = {
   },
   border: {
     primary: '#999999',
+    secondary: '#ddd',
   },
   foreground: {
     tertiarry: '#aaa',
+    brand: '#3b83f7',
   },
 };
 
