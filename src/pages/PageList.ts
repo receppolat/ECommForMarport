@@ -1,15 +1,17 @@
 import ECommTabNavigation from '../routes/ecomm-tab';
+
 import {
   Cart,
   CategoryDetail,
   Home,
   Login,
+  Notification,
   ProductDetail,
   Profile,
   Register,
 } from './';
+
 import type {NativeStackNavigationOptions} from '@react-navigation/native-stack/lib/typescript/src/types';
-import {IIcon} from '../components/Icon/Icon.type';
 
 enum Prefix {
   ECOMM = 'ECOMM',
@@ -29,6 +31,7 @@ enum Pages {
   Home = 'Home',
   Cart = 'Cart',
   Profile = 'Profile',
+  Notification = 'Notification',
 }
 
 type IPageList = {
@@ -49,6 +52,13 @@ type IPageList = {
 };
 
 const PAGE_LIST: IPageList = {
+  [Pages.ECommTab]: {
+    name: `${Prefix.ECOMM}_${Pages.ECommTab}`,
+    component: ECommTabNavigation,
+    type: NType.STACK,
+    options: {headerShown: false, title: ''},
+  },
+
   [Pages.Login]: {
     name: `${Prefix.ECOMM}_${Pages.Login}`,
     component: Login,
@@ -85,13 +95,16 @@ const PAGE_LIST: IPageList = {
     },
   },
 
-  [Pages.ECommTab]: {
-    name: `${Prefix.ECOMM}_${Pages.ECommTab}`,
-    component: ECommTabNavigation,
+  [Pages.Notification]: {
+    name: `${Prefix.ECOMM}_${Pages.Notification}`,
+    component: Notification,
     type: NType.STACK,
-    options: {headerShown: false, title: ''},
+    options: {
+      title: 'Bildirimler',
+    },
   },
 
+  //Tab
   [Pages.Home]: {
     name: `${Prefix.ECOMM}_${Pages.Home}`,
     component: Home,
@@ -99,6 +112,7 @@ const PAGE_LIST: IPageList = {
     initialParams: {
       name: 'rocket1',
       type: 'ant',
+      title: 'Ana Sayfa',
     },
   },
 
@@ -109,6 +123,8 @@ const PAGE_LIST: IPageList = {
     initialParams: {
       type: 'ant',
       name: 'shoppingcart',
+      title: 'Sepet',
+      count: 2,
     },
   },
 
@@ -119,6 +135,8 @@ const PAGE_LIST: IPageList = {
     initialParams: {
       name: 'user',
       type: 'ant',
+      title: 'Profil',
+      count: 5,
     },
   },
 };
