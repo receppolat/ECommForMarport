@@ -13,24 +13,15 @@ import {productService} from '../../../services';
 import {globalStyles} from '../../../style';
 import styles from './CategoryDetail.style';
 import type {IProduct} from '../../../types';
+import useFetch from '../../../hooks/useFetch';
 
 const CategoryDetail = props => {
   const {category} = props.route?.params ?? {};
-
-  const [data, setData] = React.useState<IProduct[]>();
-
-  React.useEffect(() => {
-    category && getProductsByCategory();
-  }, [category]);
-
-  const getProductsByCategory = () => {
-    productService
-      .getProductsByCategory(category)
-      .then(res => {
-        setData(res.data?.products ?? []);
-      })
-      .catch(console.log);
-  };
+  const {data} = useFetch({
+    service: productService.getProductsByCategory,
+    filter: category,
+    responseKey: 'data.products',
+  });
 
   const renderItem: ListRenderItem<IProduct> = ({item}) => (
     <ProductCard {...{product: item}} />

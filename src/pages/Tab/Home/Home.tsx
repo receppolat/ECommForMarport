@@ -12,25 +12,10 @@ import {globalStyles} from '../../../style';
 
 import styles from './Home.style';
 import {productService} from '../../../services';
+import useFetch from '../../../hooks/useFetch';
 
 const Home = () => {
-  const [data, setData] = React.useState<string[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    getCategories();
-  }, []);
-
-  const getCategories = () => {
-    setLoading(true);
-    productService
-      .getCategories()
-      .then(res => setData(res.data ?? []))
-      .catch(console.log)
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  const {data, status} = useFetch({service: productService.getCategories});
 
   const renderItem: ListRenderItem<string> = ({item, index}) => (
     <CategoryCard {...{category: item, index}} />
@@ -38,7 +23,7 @@ const Home = () => {
 
   return (
     <View style={globalStyles.container}>
-      {loading ? (
+      {status === 'loading' ? (
         <ActivityIndicator />
       ) : (
         <FlatList

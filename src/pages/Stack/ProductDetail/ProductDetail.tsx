@@ -12,55 +12,29 @@ import type {IProduct} from '../../../types';
 import {globalStyles} from '../../../style';
 import styles from './ProductDetail.style';
 import {Button, ProductCard, Slider} from '../../../components';
+import useFetch from '../../../hooks/useFetch';
 
 const ProductDetail = props => {
   const {id} = props.route?.params ?? {};
 
   const flatlistRef = React.useRef<FlatList>(null);
-
-  const [data, setData] = React.useState<IProduct[]>([]);
   const [product, setProduct] = React.useState<IProduct>();
-  const [counter, setCounter] = React.useState<number>(0);
 
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCounter(counter => {
-  //       if (counter < product?.images.length) {
-  //         flatlistRef.current.scrollToIndex({
-  //           animated: true,
-  //           index: counter + 1,
-  //         });
-  //         return counter++;
-  //       }
-  //       return 0;
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
+  const {data}: {data: IProduct[]} = useFetch({
+    service: productService.getProductsByCategory,
+    filter: product?.category,
+    responseKey: 'data.products',
+  });
 
   React.useEffect(() => {
     id && getProductById();
   }, [id]);
-
-  React.useEffect(() => {
-    product && getSimilarProducts();
-  }, [product]);
 
   const getProductById = () => {
     productService
       .getProductById(id)
       .then(res => {
         setProduct(res.data);
-      })
-      .catch(console.log);
-  };
-
-  const getSimilarProducts = () => {
-    productService
-      .getProductsByCategory(product.category)
-      .then(res => {
-        setData(res.data?.products);
       })
       .catch(console.log);
   };
