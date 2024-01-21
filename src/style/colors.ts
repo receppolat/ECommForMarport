@@ -7,6 +7,7 @@ const colors = {
     brand: '#3b83f7',
     primary: '#161e2b',
     secondary: '#6a717d',
+    error: '#db3232',
   },
   title: {
     primary: '#15191f',

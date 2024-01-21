@@ -8,11 +8,12 @@ import {
 import React from 'react';
 
 import {CategoryCard} from '../../../components';
-import {globalStyles} from '../../../style';
 
-import styles from './Home.style';
 import {productService} from '../../../services';
 import useFetch from '../../../hooks/useFetch';
+
+import styles from './Home.style';
+import {globalStyles} from '../../../style';
 
 const Home = () => {
   const {data, status} = useFetch({service: productService.getCategories});

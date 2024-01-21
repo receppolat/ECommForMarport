@@ -18,6 +18,7 @@ const ProductDetail = props => {
   const {id} = props.route?.params ?? {};
 
   const flatlistRef = React.useRef<FlatList>(null);
+
   const [product, setProduct] = React.useState<IProduct>();
 
   const {data}: {data: IProduct[]} = useFetch({

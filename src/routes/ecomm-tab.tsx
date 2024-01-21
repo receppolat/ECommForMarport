@@ -9,7 +9,6 @@ import {NType, PAGE_LIST} from '../pages/PageList';
 
 // Components
 import {Header, TabBar} from '../components';
-import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
