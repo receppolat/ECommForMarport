@@ -6,13 +6,21 @@ import {colors} from '../../style';
 import Badge from '../Badge';
 import {navigateTo} from '../../routes/helper';
 import {PAGE_LIST} from '../../pages/PageList';
+import {useAppDispatch, useAppSelector} from '../../store';
+import {reset} from '../../store/slices/counter-slice';
 
 const Header = props => {
-  const {title, count} = props?.route?.params;
+  const {title} = props?.route?.params;
+
+  const count = useAppSelector(state => state.counter);
+  const dispatch = useAppDispatch();
 
   const colorKey = count ? 'brand' : 'tertiarry';
 
-  const navigateToNotification = () => navigateTo(PAGE_LIST.Notification.name);
+  const navigateToNotification = () => {
+    dispatch(reset());
+    navigateTo(PAGE_LIST.Notification.name);
+  };
 
   return (
     <View style={styles.container}>
@@ -26,7 +34,7 @@ const Header = props => {
             color: colors.foreground[colorKey],
           }}
         />
-        {count && (
+        {!!count && (
           <Badge
             onPress={navigateToNotification}
             text={count}

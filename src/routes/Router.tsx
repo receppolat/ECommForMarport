@@ -6,29 +6,33 @@ import {SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperProvider} from 'react-native-paper';
+import {Provider as ReduxProvider} from 'react-redux';
 
 // Helpers and Pagelist
 import {navigationRef} from './helper';
 import {NType, PAGE_LIST} from '../pages/PageList';
 import {NetworkErrorModal} from '../components';
+import store from '../store';
 
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
   return (
-    <PaperProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <NavigationContainer ref={navigationRef}>
-          <Stack.Navigator>
-            {Object.values(PAGE_LIST).map(page => {
-              if (page.type === NType.STACK)
-                return <Stack.Screen {...{...page}} />;
-            })}
-          </Stack.Navigator>
-        </NavigationContainer>
-        <NetworkErrorModal />
-      </SafeAreaView>
-    </PaperProvider>
+    <ReduxProvider {...{store}}>
+      <PaperProvider>
+        <SafeAreaView style={{flex: 1}}>
+          <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator>
+              {Object.values(PAGE_LIST).map(page => {
+                if (page.type === NType.STACK)
+                  return <Stack.Screen {...{...page}} />;
+              })}
+            </Stack.Navigator>
+          </NavigationContainer>
+          <NetworkErrorModal />
+        </SafeAreaView>
+      </PaperProvider>
+    </ReduxProvider>
   );
 };
 

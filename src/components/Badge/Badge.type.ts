@@ -1,7 +1,7 @@
-import {TouchableOpacityProps} from 'react-native';
+import type {TouchableOpacityProps} from 'react-native';
 
 interface IBadgeProps extends TouchableOpacityProps {
-  text: string;
+  text: string | number;
   style?: any;
   textStyle?: any;
 }

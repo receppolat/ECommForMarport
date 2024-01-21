@@ -14,9 +14,13 @@ import useFetch from '../../../hooks/useFetch';
 
 import styles from './Home.style';
 import {globalStyles} from '../../../style';
+import {useAppDispatch} from '../../../store';
+import {incCount} from '../../../store/slices/counter-slice';
 
 const Home = () => {
   const {data, status} = useFetch({service: productService.getCategories});
+
+  const dispatch = useAppDispatch();
 
   const renderItem: ListRenderItem<string> = ({item, index}) => (
     <CategoryCard {...{category: item, index}} />
@@ -32,7 +36,16 @@ const Home = () => {
             data,
             renderItem,
             showsVerticalScrollIndicator: false,
-            ListHeaderComponent: <Text style={styles.title}>Categories</Text>,
+            ListHeaderComponent: (
+              <Text
+                onPress={() => {
+                  console.log('pressed');
+                  dispatch(incCount());
+                }}
+                style={styles.title}>
+                Categories
+              </Text>
+            ),
             ListFooterComponent: data.length !== 0 && (
               <Text style={styles.title}>Show More</Text>
             ),
