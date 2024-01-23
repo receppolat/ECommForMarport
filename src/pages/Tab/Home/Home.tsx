@@ -14,13 +14,14 @@ import useFetch from '../../../hooks/useFetch';
 
 import styles from './Home.style';
 import {globalStyles} from '../../../style';
-import {useAppDispatch} from '../../../store';
-import {incCount} from '../../../store/slices/counter-slice';
+import {useAppDispatch} from '../../../redux';
+import {incCount} from '../../../redux/slices/counter-slice';
+import {productStore} from '../../../mobx';
 
 const Home = () => {
   const {data, status} = useFetch({service: productService.getCategories});
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch(); // Redux
 
   const renderItem: ListRenderItem<string> = ({item, index}) => (
     <CategoryCard {...{category: item, index}} />
@@ -39,8 +40,8 @@ const Home = () => {
             ListHeaderComponent: (
               <Text
                 onPress={() => {
-                  console.log('pressed');
-                  dispatch(incCount());
+                  dispatch(incCount()); // Redux
+                  productStore.incCount(); // Mobx
                 }}
                 style={styles.title}>
                 Categories

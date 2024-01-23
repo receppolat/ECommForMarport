@@ -6,19 +6,24 @@ import {colors} from '../../style';
 import Badge from '../Badge';
 import {navigateTo} from '../../routes/helper';
 import {PAGE_LIST} from '../../pages/PageList';
-import {useAppDispatch, useAppSelector} from '../../store';
-import {reset} from '../../store/slices/counter-slice';
+import {useAppDispatch} from '../../redux';
+import {reset} from '../../redux/slices/counter-slice';
+import {productStore} from '../../mobx';
+import {observer} from 'mobx-react-lite';
 
 const Header = props => {
   const {title} = props?.route?.params;
 
-  const count = useAppSelector(state => state.counter);
-  const dispatch = useAppDispatch();
+  // const count = useAppSelector(state => state.counter); // Redux
+  const dispatch = useAppDispatch(); // Redux
+
+  const count = productStore.counter; // Mobx
 
   const colorKey = count ? 'brand' : 'tertiarry';
 
   const navigateToNotification = () => {
-    dispatch(reset());
+    productStore.reset(); // Mobx
+    dispatch(reset()); // Redux
     navigateTo(PAGE_LIST.Notification.name);
   };
 
@@ -46,4 +51,4 @@ const Header = props => {
   );
 };
 
-export default Header;
+export default observer(Header);

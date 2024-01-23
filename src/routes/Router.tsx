@@ -12,7 +12,7 @@ import {Provider as ReduxProvider} from 'react-redux';
 import {navigationRef} from './helper';
 import {NType, PAGE_LIST} from '../pages/PageList';
 import {NetworkErrorModal} from '../components';
-import store from '../store';
+import store from '../redux';
 
 const Stack = createNativeStackNavigator();
 

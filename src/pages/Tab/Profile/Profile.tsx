@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {globalStyles} from '../../../style';
-import {useAppSelector} from '../../../store';
+import {useAppSelector} from '../../../redux';
 
 const Profile = () => {
   const counter = useAppSelector(state => state.counter);
