@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   button: {
-    width: '60%',
+    width: '50%',
     borderRadius: 4,
   },
   image: {

@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import {productService} from '../../../services';
-import type {IProduct} from '../../../types';
+import type {ICart, IProduct} from '../../../types';
 import {globalStyles} from '../../../style';
 import styles from './ProductDetail.style';
-import {Button, ProductCard, Slider} from '../../../components';
+import {Button, Counter, ProductCard, Slider} from '../../../components';
 import useFetch from '../../../hooks/useFetch';
+import {cartStore} from '../../../mobx';
 
 const ProductDetail = props => {
   const {id} = props.route?.params ?? {};
@@ -20,6 +21,8 @@ const ProductDetail = props => {
   const flatlistRef = React.useRef<FlatList>(null);
 
   const [product, setProduct] = React.useState<IProduct>();
+  const [count, setCount] = React.useState<string>('1');
+  const [inCart, setInCart] = React.useState<boolean>(false);
 
   const {data}: {data: IProduct[]} = useFetch({
     service: productService.getProductsByCategory,
@@ -31,6 +34,19 @@ const ProductDetail = props => {
     id && getProductById();
   }, [id]);
 
+  React.useEffect(() => {
+    checkCount();
+  }, [id, product]);
+
+  const checkCount = () => {
+    if (id) {
+      const cart = cartStore.cart.find(x => x.product.id === id);
+      const cnt = cart ? cart.count.toString() : '1';
+      setCount(cnt);
+      setInCart(!!cart);
+    }
+  };
+
   const getProductById = () => {
     productService
       .getProductById(id)
@@ -38,6 +54,16 @@ const ProductDetail = props => {
         setProduct(res.data);
       })
       .catch(console.log);
+  };
+
+  const addToCart = () => {
+    setInCart(true);
+    const cart: ICart = {
+      count: Number(count),
+      product,
+    };
+
+    cartStore.addToCart(cart);
   };
 
   if (!product) return <ActivityIndicator />;
@@ -55,10 +81,11 @@ const ProductDetail = props => {
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>Bu ürün sadece {product.price}₺</Text>
         <View style={styles.addToCartContainer}>
-          <Text style={styles.price}> - 1 +</Text>
+          <Counter {...{value: count, onChangeText: setCount}} />
           <Button
             {...{
-              title: 'Sepete Ekle',
+              title: inCart ? 'Update To Cart' : 'Add To Cart',
+              onPress: addToCart,
               style: styles.button,
             }}
           />

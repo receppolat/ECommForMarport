@@ -46,6 +46,7 @@ const TabBar = (props: ITabBarProps) => {
         return (
           <TouchableOpacity
             {...{
+              key: Math.random(),
               onPress,
               style: [
                 styles.base.tabStyle,

@@ -25,7 +25,7 @@ const Router = () => {
             <Stack.Navigator>
               {Object.values(PAGE_LIST).map(page => {
                 if (page.type === NType.STACK)
-                  return <Stack.Screen {...{...page}} />;
+                  return <Stack.Screen {...{...page, key: Math.random()}} />;
               })}
             </Stack.Navigator>
           </NavigationContainer>

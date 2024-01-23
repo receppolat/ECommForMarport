@@ -19,7 +19,7 @@ const ECommTabNavigation = () => {
         if (page.type === NType.TAB)
           return (
             <Tab.Screen
-              {...{...page}}
+              {...{...page, key: Math.random()}}
               options={{
                 header: props => <Header {...props} />,
               }}
