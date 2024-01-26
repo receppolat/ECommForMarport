@@ -1,3 +1,4 @@
 import productService from './product-service';
+import mapService from './map-service';
 
-export {productService};
+export {productService, mapService};

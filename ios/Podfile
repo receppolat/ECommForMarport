@@ -41,3 +41,7 @@ target 'EComm' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+# React Native Maps dependencies
+pod 'GoogleMaps'
+pod 'Google-Maps-iOS-Utils'
