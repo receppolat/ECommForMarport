@@ -30,7 +30,9 @@
     "react-native": "0.70.6",
     "react-native-actions-sheet": "^0.8.29",
     "react-native-device-info": "^10.12.0",
+    "react-native-document-picker": "^9.1.0",
     "react-native-geolocation-service": "^5.3.1",
+    "react-native-image-picker": "^7.1.0",
     "react-native-maps": "^1.10.0",
     "react-native-mmkv": "2.5.1",
     "react-native-paper": "^5.12.1",
@@ -38,7 +40,8 @@
     "react-native-screens": "^3.29.0",
     "react-native-vector-icons": "^10.0.3",
     "react-redux": "^8.0.4",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "rn-marport-ui": "git+https://github.com/receppolat/marport-ui.git#0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
