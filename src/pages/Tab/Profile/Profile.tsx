@@ -15,6 +15,7 @@ import {mapService} from '../../../services';
 import axios from 'axios';
 import {requestLocationPermission} from '../../../utils';
 import Geolocation from 'react-native-geolocation-service';
+import i18next from 'i18next';
 
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
@@ -85,6 +86,7 @@ const Profile = () => {
       .then(res => {
         if (res.assets?.[0]) {
           const {fileName, uri, fileSize, type} = res.assets?.[0];
+
           let obj = {
             uri, //: uri.replace('file://', ''),
             name: fileName,
@@ -151,6 +153,11 @@ const Profile = () => {
       .catch(console.log);
   };
 
+  const changeLanguage = language => {
+    i18next.changeLanguage(language);
+  };
+
+  //TODO: Localization get current location
   return (
     <View style={[globalStyles.container, styles.container]}>
       {/* <MapView
@@ -238,6 +245,13 @@ const Profile = () => {
 
       <Image source={{uri: img}} style={{width: 60, height: 60}} />
 
+      <TouchableOpacity onPress={() => changeLanguage('en')}>
+        <Text>EN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => changeLanguage('tr')}>
+        <Text>TR</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity onPress={openCamera}>
         <Text>Kamerayı Aç</Text>
       </TouchableOpacity>
@@ -249,6 +263,7 @@ const Profile = () => {
       <Card>
         <Button />
       </Card>
+
       <Card>
         <TouchableOpacity onPress={openLibrary}>
           <Text>Dosyaları Aç</Text>

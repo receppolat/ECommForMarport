@@ -17,10 +17,11 @@ import {globalStyles} from '../../../style';
 import {useAppDispatch} from '../../../redux';
 import {incCount} from '../../../redux/slices/counter-slice';
 import {productStore} from '../../../mobx';
+import {useTranslation} from 'react-i18next';
 
 const Home = () => {
   const {data, status} = useFetch({service: productService.getCategories});
-
+  const {t} = useTranslation();
   const dispatch = useAppDispatch(); // Redux
 
   const renderItem: ListRenderItem<string> = ({item, index}) => (
@@ -44,7 +45,7 @@ const Home = () => {
                   productStore.incCount(); // Mobx
                 }}
                 style={styles.title}>
-                Categories
+                {t('CATEGORIES')}
               </Text>
             ),
             ListFooterComponent: data.length !== 0 && (
