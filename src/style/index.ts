@@ -1,4 +1,5 @@
 import {colors} from './colors';
 import globalStyles from './global-style';
-
-export {colors, globalStyles};
+import padding from './padding';
+import radius from './radius';
+export {colors, globalStyles, padding, radius};

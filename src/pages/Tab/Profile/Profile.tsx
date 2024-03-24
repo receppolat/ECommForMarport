@@ -1,14 +1,7 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Button, Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {Fragment} from 'react';
-import {globalStyles} from '../../../style';
-import MapView, {
-  Callout,
-  Circle,
-  LatLng,
-  Marker,
-  Polygon,
-  Polyline,
-} from 'react-native-maps';
+import {globalStyles, radius} from '../../../style';
+
 import styles from './Profile.style';
 import useFetch from '../../../hooks/useFetch';
 import {mapService} from '../../../services';
@@ -21,9 +14,42 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 import DocumentPicker from 'react-native-document-picker';
 
-import {Button, Card} from 'rn-marport-ui/src';
+import {LineChart, PieChart} from '../../../widget';
+import {PieChartData, PieChartData2} from './data';
+import {showErrorMessage} from '../../../utils/message-helper';
+
+const colors = [
+  '#cffafe',
+  '#a5f3fc',
+  '#67e8f9',
+  '#22d3ee',
+  '#06b6d4',
+  '#0891b2',
+  '#0e7490',
+  '#155e75',
+  '#164e63',
+];
 
 const Profile = () => {
+  const [data2, setData2] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const max = Math.min(...PieChartData2);
+
+    let arr = PieChartData2.map((x, index) => {
+      return {
+        key: index,
+        value: x,
+        svg: {fill: colors?.[index % 9]},
+        arc: {
+          outerRadius: x === max ? '120%' : '100%',
+          cornerRadius: radius.tiny,
+        },
+      };
+    });
+
+    setData2(arr);
+  }, []);
   // const ref = React.useRef<MapView>(null);
 
   // const [line, setLine] = React.useState<LatLng[]>([]);
@@ -157,6 +183,9 @@ const Profile = () => {
     i18next.changeLanguage(language);
   };
 
+  const openMessage = () => showErrorMessage('Bubir hatadır');
+
+  const data = [200, 20, 100, 40, 50];
   //TODO: Localization get current location
   return (
     <View style={[globalStyles.container, styles.container]}>
@@ -243,7 +272,7 @@ const Profile = () => {
         />
       </MapView> */}
 
-      <Image source={{uri: img}} style={{width: 60, height: 60}} />
+      {/* <Image source={{uri: img}} style={{width: 60, height: 60}} />
 
       <TouchableOpacity onPress={() => changeLanguage('en')}>
         <Text>EN</Text>
@@ -268,7 +297,12 @@ const Profile = () => {
         <TouchableOpacity onPress={openLibrary}>
           <Text>Dosyaları Aç</Text>
         </TouchableOpacity>
-      </Card>
+      </Card> */}
+      {/* 
+      <LineChart {...{data}} />
+      <PieChart {...{data: data2}} /> */}
+
+      <Button title="tıkla" onPress={openMessage} />
     </View>
   );
 };

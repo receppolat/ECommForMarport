@@ -1,6 +1,6 @@
 // React and React Native
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 
 // 3th Party
 import {NavigationContainer} from '@react-navigation/native';
@@ -13,6 +13,7 @@ import {navigationRef} from './helper';
 import {NType, PAGE_LIST} from '../pages/PageList';
 import {NetworkErrorModal} from '../components';
 import store from '../redux';
+import FlashMessage from 'react-native-flash-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ const Router = () => {
             </Stack.Navigator>
           </NavigationContainer>
           <NetworkErrorModal />
+          <FlashMessage {...{MessageComponent: () => <Text>asdas</Text>}} />
         </SafeAreaView>
       </PaperProvider>
     </ReduxProvider>
